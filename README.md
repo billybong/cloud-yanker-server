@@ -10,7 +10,7 @@ mvn clean install
 java -jar target/fatjar.jar server
 
 
-<h3>Build & run the client:</h>
+<h3>Build & run the client:</h3>
 The client is simply an AutoHotKey script that talks to your clipboard.
 See the cloud-yanker-client repo for it.
 
