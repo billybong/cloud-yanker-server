@@ -13,7 +13,7 @@ import java.util.*;
 @Path("/snippets")
 public class SnippetResource {
 
-    private Map<String, Queue<String>> snippets = new HashMap<String, Queue<String>>();
+    private Map<String, String> snippets = new HashMap<String, String>();
 
     @POST
     @Path("/{user}")
@@ -24,26 +24,19 @@ public class SnippetResource {
 
         //UGLY mofo. Get my character codes right next time!
         snippet = snippet.replaceAll("\\u0000", "");
-
-        Queue<String> storedSnippets = snippets.get(user);
-        if(storedSnippets == null){
-            storedSnippets = Collections.asLifoQueue(new ArrayDeque<String>());
-        }
-
-        storedSnippets.offer(snippet);
-        snippets.put(user, storedSnippets);
+        snippets.put(user, snippet);
     }
 
     @GET
     @Path("/{user}")
     @Produces("text/plain")
     public String getSnippet(@PathParam("user") String user){
-        final Queue<String> storedSnippets = snippets.get(user);
+        final String storedSnippet = snippets.get(user);
 
-        if(storedSnippets == null || storedSnippets.peek() == null){
+        if(storedSnippet == null){
             return "";
         }
 
-        return storedSnippets.remove();
+        return storedSnippet;
     }
 }
