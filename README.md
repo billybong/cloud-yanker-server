@@ -10,6 +10,13 @@ mvn clean install
 java -jar target/fatjar.jar server
 
 
-Build & run the client:
+<h3>Build & run the client:</h>
 The client is simply an AutoHotKey script that talks to your clipboard.
 See the cloud-yanker-client repo for it.
+
+<h3>TODOS:</h3>
+<ul>
+  <li>Fix security, at least SSL against the server</li>
+  <li>Healthcheck against server on script startup using Dropwizard healthcheck page</li>
+  <li>Fix encoding issue with AHK so that string replacement can be avoided.</li>
+</ul>
