@@ -22,8 +22,6 @@ public class SnippetResource {
             return;
         }
 
-        //UGLY mofo. Get my character codes right next time!
-        snippet = snippet.replaceAll("\\u0000", "");
         snippets.put(user, snippet);
     }
 
@@ -31,12 +29,7 @@ public class SnippetResource {
     @Path("/{user}")
     @Produces("text/plain")
     public String getSnippet(@PathParam("user") String user){
-        final String storedSnippet = snippets.get(user);
 
-        if(storedSnippet == null){
-            return "";
-        }
-
-        return storedSnippet;
+        return snippets.get(user)==null?"":snippets.get(user);
     }
 }
